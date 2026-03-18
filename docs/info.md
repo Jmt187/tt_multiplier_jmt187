@@ -9,12 +9,32 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+This project implements a 4-bit digital multiplier using Verilog.
+
+Two 4-bit inputs, A and B, are provided through the input pins (ui_in). The design multiplies A and B using combinational logic, producing an 8-bit product P.
+
+The input mapping is:
+- ui_in[7:4] → A[3:0]
+- ui_in[3:0] → B[3:0]
+
+The output mapping is:
+- uo_out[7:0] → P[7:0]
+
+The multiplier is implemented in the module `mult.v`, and connected to the Tiny Tapeout wrapper `tt_um_mult_top.v`.
 
 ## How to test
 
-Explain how to use your project
+To test the design, different values of A and B can be applied to the input pins.
+
+For example:
+- A = 3 (0011), B = 2 (0010) → Output P = 6 (00000110)
+- A = 15 (1111), B = 15 (1111) → Output P = 225 (11100001)
+
+In simulation (ModelSim), the testbench `mult_tb.v` runs 1000 random tests and verifies that the output matches the expected multiplication result.
+
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+No external hardware is required for this design.
+
+The multiplier is purely digital and operates entirely within the chip.
